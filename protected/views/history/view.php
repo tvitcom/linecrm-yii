@@ -32,7 +32,4 @@ $this->widget('zii.widgets.CDetailView', array(
 
 ?>
 <br />
-<?php
-echo CHtml::link('Back to To-Do list', array(
-    'url' => $this->createUrl('history/admin', array('History[person_id]' => $model->person_id)))
-);
+<?php echo CHtml::link('Back to To-Do list', array('history/index'));
