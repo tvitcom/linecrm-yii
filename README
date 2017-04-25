@@ -24,7 +24,7 @@
 пароль для базы данных: pass_to_linecrm
 пользователь для базы данных:linecrm
 база данных: linecrm
-Заливаем начальный дамп таблиц (файл linecrm_nodata_dump.sql).
+Заливаем начальный дамп таблиц (файл protected/data/linecrm_test_data.sql).
 Для входа на страницу сайта используем:
 Пользователь:adm
 Пароль:pass_to_linecrm

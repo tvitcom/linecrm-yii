@@ -1,0 +1,236 @@
+-- phpMyAdmin SQL Dump
+-- version 4.0.10.10
+-- http://www.phpmyadmin.net
+--
+-- Хост: localhost
+-- Время создания: Янв 27 2016 г., 19:30
+-- Версия сервера: 5.5.46-0ubuntu0.12.04.2
+-- Версия PHP: 5.3.10-1ubuntu3.21
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- База данных: `linecrm`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `crm_history`
+--
+
+DROP TABLE IF EXISTS `crm_history`;
+CREATE TABLE IF NOT EXISTS `crm_history` (
+  `id` bigint(21) unsigned NOT NULL AUTO_INCREMENT,
+  `person_id` bigint(21) unsigned NOT NULL,
+  `dateconn` date DEFAULT NULL COMMENT 'дата',
+  `talk` varchar(2000) DEFAULT NULL,
+  `report` varchar(2000) DEFAULT NULL,
+  `status` tinyint(3) unsigned DEFAULT NULL,
+  `ready` tinyint(1) unsigned DEFAULT '0',
+  `schedule` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='для записи истории общения с соответствующим контактом' AUTO_INCREMENT=388 ;
+
+--
+-- Очистить таблицу перед добавлением данных `crm_history`
+--
+
+TRUNCATE TABLE `crm_history`;
+--
+-- Дамп данных таблицы `crm_history`
+--
+
+INSERT INTO `crm_history` (`id`, `person_id`, `dateconn`, `talk`, `report`, `status`, `ready`, `schedule`) VALUES
+(365, 606, '2015-10-14', 'пишет мало места на диске', 'ёё', 0, 1, '2015-10-15'),
+(366, 605, '2015-10-15', 'посмотреть сериал', 'ьььььььььььььь', 0, 1, '2015-10-15'),
+(370, 607, '2015-11-15', 'не выходит чтото', 'ее', 0, 1, '2015-11-15'),
+(373, 608, '2015-10-09', 'примерно такойже текст написать к тесту', 'текст заполнен и вставлен сюда', 0, 1, '2015-11-01'),
+(374, 608, '2015-11-01', 'парпааппа', '', 0, 0, '2015-12-10'),
+(377, 609, '2015-11-23', 'нужно будет исправить в тестовых записях\n\n', '', 0, 0, '2016-01-01'),
+(381, 608, '2015-12-03', 'ывапывапыв', 'авпрвапрвапрвъ', 0, 1, '2015-12-03'),
+(383, 613, '2015-12-04', 'сделать пиджак', 'готов пиджачок', 0, 1, '2015-12-09'),
+(387, 614, '2016-01-02', 'сделать кармашки', 'широкие кармашки готовы', 0, 1, '2016-01-05');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `crm_persons`
+--
+
+DROP TABLE IF EXISTS `crm_persons`;
+CREATE TABLE IF NOT EXISTS `crm_persons` (
+  `id` bigint(21) unsigned NOT NULL AUTO_INCREMENT,
+  `whose_id` bigint(21) unsigned DEFAULT '1' COMMENT 'Whose this record',
+  `fio` varchar(62) DEFAULT NULL,
+  `whois` varchar(80) NOT NULL,
+  `organis` varchar(93) DEFAULT NULL,
+  `emails` varchar(57) DEFAULT NULL,
+  `telh` varchar(16) DEFAULT NULL,
+  `fax` varchar(16) DEFAULT NULL,
+  `mob2` varchar(16) DEFAULT NULL,
+  `mob1` varchar(16) DEFAULT NULL,
+  `addr` varchar(148) DEFAULT NULL,
+  `addrh` varchar(100) DEFAULT NULL,
+  `addrw` varchar(80) DEFAULT NULL,
+  `web` varchar(43) DEFAULT NULL,
+  `birth` date NOT NULL,
+  `note` text,
+  `foto` varchar(255) DEFAULT NULL,
+  `cat` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=610 ;
+
+--
+-- Очистить таблицу перед добавлением данных `crm_persons`
+--
+
+TRUNCATE TABLE `crm_persons`;
+--
+-- Дамп данных таблицы `crm_persons`
+--
+
+INSERT INTO `crm_persons` (`id`, `whose_id`, `fio`, `whois`, `organis`, `emails`, `telh`, `fax`, `mob2`, `mob1`, `addr`, `addrh`, `addrw`, `web`, `birth`, `note`, `foto`, `cat`) VALUES
+(605, 1, 'ВАСЯ С.', 'клиент ТЕСТ из города', '', '', '', '', '', '+3806102313', 'Украина, г.Харьков, ', '', '', '', '2001-01-01', '', '', ''),
+(606, 1, 'А. Василий', 'тесттт', '', '', '', '', '', '+3801231231', '', 'Украина, г.Харьков, пр. Гагарина', '', '', '1900-01-01', 'вот', '', ''),
+(607, 1, 'Петя', 'от ВАСИ ПУПКИНА', '', '', '', '', '', '38096601223', '', 'улица версаль', '', '', '1900-01-01', 'апорпара', '', ''),
+(608, 1, 'Груня', 'просп', 'инвест', '', '', '', '', '38095000000', '', '', '', '', '2014-01-01', 'делать тттттррррпръ', '', ''),
+(609, 1, 'Дилан', 'параходы', '', '', '', '', '', '', 'рим', '', '', '', '1900-01-01', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `crm_pocket`
+--
+
+DROP TABLE IF EXISTS `crm_pocket`;
+CREATE TABLE IF NOT EXISTS `crm_pocket` (
+  `id` bigint(21) unsigned NOT NULL AUTO_INCREMENT,
+  `talkhistory_id` bigint(21) unsigned NOT NULL,
+  `coin` int(7) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Очистить таблицу перед добавлением данных `crm_pocket`
+--
+
+TRUNCATE TABLE `crm_pocket`;
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `crm_products`
+--
+
+DROP TABLE IF EXISTS `crm_products`;
+CREATE TABLE IF NOT EXISTS `crm_products` (
+  `id` bigint(21) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(16) DEFAULT NULL,
+  `descript` varchar(99) DEFAULT NULL,
+  `state` varchar(12) DEFAULT NULL,
+  `delivery` varchar(10) DEFAULT NULL,
+  `warranty` varchar(6) DEFAULT NULL,
+  `cost` int(7) DEFAULT NULL,
+  `terms` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Очистить таблицу перед добавлением данных `crm_products`
+--
+
+TRUNCATE TABLE `crm_products`;
+--
+-- Дамп данных таблицы `crm_products`
+--
+
+INSERT INTO `crm_products` (`id`, `name`, `descript`, `state`, `delivery`, `warranty`, `cost`, `terms`) VALUES
+(1, 'product1', 'просто описание', '', '', '', 50, ''),
+(3, 'product2', 'тру описание', '', '', '', 100, ''),
+(5, 'product3', 'тру тру описание', '', '', '', 20000, '');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `crm_profiles`
+--
+
+DROP TABLE IF EXISTS `crm_profiles`;
+CREATE TABLE IF NOT EXISTS `crm_profiles` (
+  `id` bigint(21) unsigned NOT NULL AUTO_INCREMENT,
+  `login` varchar(30) NOT NULL,
+  `passhash` char(64) DEFAULT NULL,
+  `email` varchar(25) NOT NULL DEFAULT 'none',
+  `allow` tinyint(1) unsigned DEFAULT '0',
+  `tincoming` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `developer` tinyint(1) unsigned DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Очистить таблицу перед добавлением данных `crm_profiles`
+--
+
+TRUNCATE TABLE `crm_profiles`;
+--
+-- Дамп данных таблицы `crm_profiles`
+--
+
+INSERT INTO `crm_profiles` (`id`, `login`, `passhash`, `email`, `allow`, `tincoming`, `developer`) VALUES
+(1, 'adm', '$2y$13$zEbI1N4xDcffhvMdhtgkouORDFQIxbajF0ozKXUk9o65mWS8BiWfq', 'admin@mail.ruru', 1, '2012-11-05 14:32:20', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `crm_support`
+--
+
+DROP TABLE IF EXISTS `crm_support`;
+CREATE TABLE IF NOT EXISTS `crm_support` (
+  `id` bigint(21) unsigned NOT NULL AUTO_INCREMENT,
+  `todo` varchar(1024) NOT NULL,
+  `when_it` datetime DEFAULT NULL,
+  `fix` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `fixdate` date DEFAULT NULL,
+  `rev` char(10) NOT NULL,
+  `developer_id` bigint(21) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=45 ;
+
+--
+-- Очистить таблицу перед добавлением данных `crm_support`
+--
+
+TRUNCATE TABLE `crm_support`;
+--
+-- Дамп данных таблицы `crm_support`
+--
+
+INSERT INTO `crm_support` (`id`, `todo`, `when_it`, `fix`, `fixdate`, `rev`, `developer_id`) VALUES
+(30, 'Доделать раздел "TO-DO linecrm" (задачи для разработки linecrm)', '2013-04-05 06:01:54', 1, '2013-04-05', '3.4', 0),
+(31, 'Сделать раздел "Ошибки" (задачи для доработки linecrm)', '2013-04-05 06:18:43', 1, '2013-04-05', '3.5', 0),
+(32, 'Доделать разделы:\r\n	"Товары" - выбираются все доступные товары с ценами для прайса;', '2013-04-05 06:19:13', 0, '2013-10-05', '5.2', 0),
+(33, 'Сделать разделы:"Отчёты"-(выбирается тип отчета: денежные поступления(опция за нужный период),\r\n					 долги (кто сколько должен),\r\n					 активность клиентов(топ 100),\r\n					 СРЕДНЯЯ ДОХОДНОСТЬ С КЛИЕНТОВ ТОП20 (за месячный период),\r\n					 неактивные клиенты для обвона).\r\n	', '2013-04-05 06:20:00', 0, '2013-08-25', '4.1', 0),
+(34, 'Доделать разделы:"Настройка"-(выбирается настройка интерфейса в котором есть раздел "TO-DO linecrm")', '2013-04-05 06:20:50', 1, '2013-04-09', '3.7', 0),
+(35, 'Регистрацию нескольких пользователей с различными правами допуска,', '2013-04-05 06:21:17', 0, '2013-09-09', '5.1', 0),
+(36, 'Занесение заказа и выдача акта выполненных работ по услуге,', '2013-04-05 06:21:35', 0, '2013-10-06', '5.3', 0),
+(37, 'Перевести некоторый функционал на AJAX-технологию,', '2013-04-05 06:21:46', 0, NULL, '7', 0),
+(38, 'Поддержку базы данных Oracle 9/10/11,', '2013-04-05 06:22:09', 0, '2013-08-23', '4', 0),
+(39, 'Создание современного интерфейса для сайта (скорее всего на MODX),', '2013-04-05 06:22:25', 0, NULL, '8', 0),
+(40, 'Проведение аналитики по различным критериям, в том числе и создание воронки продаж', '2013-04-05 06:22:35', 0, NULL, '8', 0),
+(41, 'Импорт-экспорт, ETL технологии, отчёты - вот отсюда начнутся коммерческие релизы.', '2013-04-05 06:22:48', 0, NULL, '9', 0),
+(42, 'Сделать процесс проекта для занесения инфы про прозвоненые номера и отосланные письма', '2013-04-05 06:27:32', 0, '2013-10-08', '5.7', 0),
+(43, 'Создание почтового модуля.', '2013-04-05 08:52:50', 0, '2013-10-07', '5.4', 0),
+(44, 'при редактировании истории не вносится data https://127.1/edittalk.php?id=108', '2013-04-07 14:17:30', 1, NULL, '', NULL);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -19,7 +19,7 @@
     <body>
         <div class="container" id="page">
             <div id="header">
-                <div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+                <div id="logo"><b><font color = "red">Line</font>CRM</b></div>
             </div><!-- header -->
             <div id="mainmenu">
                 <?php
