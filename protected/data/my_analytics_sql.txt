@@ -1,0 +1,4 @@
+---------
+SELECT * FROM crm_cash where keyhist in (
+    SELECT id FROM `crm_talkhistory` WHERE keycont in (
+        select id from crm_people where whois like '%клиент%'));

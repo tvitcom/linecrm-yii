@@ -1,6 +1,24 @@
+# environment *nix
+!.htaccess
+.*
+!.gitignore
+*~
+
+#Yii files
+uploads/*
 assets/*
 !assets/.gitignore
 protected/runtime/*
 !protected/runtime/.gitignore
 protected/data/*.db
+protected/data/*.sql
+protected/data/*.dmp
 themes/classic/views/
+
+# composer
+vendor/*
+composer.phar
+composer.lock
+
+# netbeanse
+nbproject/*
